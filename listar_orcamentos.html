@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Orçamentos</title>
+</head>
+<body>
+    <h1>Orçamentos de Bicicletas</h1>
+    <a href="{% url 'adicionar_orcamento' %}">Adicionar Novo Orçamento</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for orcamento in orcamentos %}
+            <tr>
+                <td>{{ orcamento.codigo_orcamento }}</td>
+                <td>{{ orcamento.nome_cliente }}</td>
+                <td>{{ orcamento.telefone_cliente }}</td>
+                <td>{{ orcamento.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'editar_orcamento' orcamento.codigo_orcamento %}">Editar</a>
+                    <a href="{% url 'alterar_status' orcamento.codigo_orcamento %}">Alterar Status</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
